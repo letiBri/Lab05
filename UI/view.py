@@ -5,8 +5,6 @@ class View(ft.UserControl):
     def __init__(self, page: ft.Page):
         super().__init__()
         # page stuff
-        self.btn_searchIscritti = None
-        self.listaCorsi = None
         self._page = page
         self._page.title = "Lab O5 - segreteria studenti"
         self._page.horizontal_alignment = 'CENTER'
@@ -15,10 +13,15 @@ class View(ft.UserControl):
         self._controller = None
         # graphical elements
         self._title = None
-        self.txt_name = None
-        self.btn_hello = None
         self.txt_result = None
-        self.txt_container = None
+        self.btn_searchIscritti = None
+        self.listaCorsi = None
+        self.btn_iscrivi = None
+        self.btn_searchCorsi = None
+        self.btn_searchStudenti = None
+        self.txt_cognome = None
+        self.txt_nome = None
+        self.txt_matricola = None
 
     def load_interface(self):
         """Function that loads the graphical elements of the view"""
@@ -26,13 +29,12 @@ class View(ft.UserControl):
         self._title = ft.Text("App Gestione Studenti", color="blue", size=24)
 
         # aggiungo la dropdown dei corsi --> menu a tendina
-        self.listaCorsi = ft.Dropdown(label="corso", hint_text="Selezionare un corso", width=300, options=[])
+        self.listaCorsi = ft.Dropdown(label="corso", hint_text="Selezionare un corso", width=500, options=[])
         self._controller.fillListaCorsi()
 
         # bottone che cerca gli iscritti
         self.btn_searchIscritti = ft.ElevatedButton(text="Cerca iscritti", on_click=self._controller.handle_searchIscritti)
 
-        # row
         row = ft.Container(self._title, alignment=ft.alignment.center)
         row1 = ft.Row([self.listaCorsi, self.btn_searchIscritti], alignment=ft.MainAxisAlignment.CENTER)
 
@@ -44,9 +46,9 @@ class View(ft.UserControl):
         row2 = ft.Row([self.txt_matricola, self.txt_nome, self.txt_cognome], alignment=ft.MainAxisAlignment.CENTER)
 
         #bottoni cliccabili
-        self.btn_searchStudenti = ft.ElevatedButton(text="Cerca studente", on_click=self._controller.handle_searchStudenti)
-        self.btn_searchCorsi = ft.ElevatedButton(text="Cerca corsi", on_click=self._controller.handle_searchCorsi)
-        self.btn_iscrivi = ft.ElevatedButton(text="Iscrivi", on_click=self._controller.handle_iscrivi)
+        self.btn_searchStudenti = ft.ElevatedButton(text="Cerca studente") #on_click=self._controller.handle_searchStudenti
+        self.btn_searchCorsi = ft.ElevatedButton(text="Cerca corsi") #on_click=self._controller.handle_searchCorsi
+        self.btn_iscrivi = ft.ElevatedButton(text="Iscrivi") #on_click=self._controller.handle_iscrivi
 
         row3 = ft.Row([self.btn_searchStudenti, self.btn_searchCorsi, self.btn_iscrivi], alignment=ft.MainAxisAlignment.CENTER)
 
