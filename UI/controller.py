@@ -1,5 +1,7 @@
 import flet as ft
 
+from model import corso
+
 
 class Controller:
     def __init__(self, view, model):
@@ -17,3 +19,22 @@ class Controller:
             return
         self._view.txt_result.controls.append(ft.Text(f"Hello, {name}!"))
         self._view.update_page()
+
+    def fillListaCorsi(self):
+        lista = self._model.elencoCorsi()
+        for i in lista:
+            self._view.listaCorsi.options.append(ft.dropdown.Option(key=i.codins, text=str(i)))
+
+    def handle_searchIscritti(self, e):
+        corsoScelto = self._view.listaCorsi.value
+        if corsoScelto is None:
+            self._view.txt_result.controls.append(ft.Text("Attenzione: non hai scelto un corso"))
+            self._view.update_page()
+            return
+        codiceCorso = corsoScelto.codins
+        listaStudenti = self._model.cercaIscritti(codiceCorso)
+        for studente in listaStudenti:
+            self._view.txt_result.controls.append(ft.Text(str(studente)))
+        self._view.update_page()
+        return
+
