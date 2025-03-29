@@ -18,7 +18,7 @@ class View(ft.UserControl):
         self.listaCorsi = None
         self.btn_iscrivi = None
         self.btn_searchCorsi = None
-        self.btn_searchStudenti = None
+        self.btn_searchStudente = None
         self.txt_cognome = None
         self.txt_nome = None
         self.txt_matricola = None
@@ -46,11 +46,11 @@ class View(ft.UserControl):
         row2 = ft.Row([self.txt_matricola, self.txt_nome, self.txt_cognome], alignment=ft.MainAxisAlignment.CENTER)
 
         #bottoni cliccabili
-        self.btn_searchStudenti = ft.ElevatedButton(text="Cerca studente") #on_click=self._controller.handle_searchStudenti
-        self.btn_searchCorsi = ft.ElevatedButton(text="Cerca corsi") #on_click=self._controller.handle_searchCorsi
-        self.btn_iscrivi = ft.ElevatedButton(text="Iscrivi") #on_click=self._controller.handle_iscrivi
+        self.btn_searchStudente = ft.ElevatedButton(text="Cerca studente", on_click=self._controller.handle_searchStudente)
+        self.btn_searchCorsi = ft.ElevatedButton(text="Cerca corsi", on_click=self._controller.handle_searchCorsi)
+        self.btn_iscrivi = ft.ElevatedButton(text="Iscrivi", on_click=self._controller.handle_iscrivi)
 
-        row3 = ft.Row([self.btn_searchStudenti, self.btn_searchCorsi, self.btn_iscrivi], alignment=ft.MainAxisAlignment.CENTER)
+        row3 = ft.Row([self.btn_searchStudente, self.btn_searchCorsi, self.btn_iscrivi], alignment=ft.MainAxisAlignment.CENTER)
 
         self._page.add(row, row1, row2, row3)
 
